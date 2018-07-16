@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication7.Models.Lifeguards>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Lifeguards", FormMethod.Get))
+{
+    <p>
+        <hr />
+        Lifeguard name: @Html.TextBox("SearchName")
+        <br /> <br />
+        <b>Filter by: </b>
+        <br />
+        City: @Html.DropDownList("City", "All")
+        Gender: @Html.DropDownList("Gender", "All")
+        Status: @Html.DropDownList("Status", "All")
+        <br /> <br />
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.city.city_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lifeguard_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.l_status)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.city.city_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lifeguard_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.l_status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.lifeguard_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.lifeguard_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.lifeguard_id })
+            </td>
+        </tr>
+    }
+</table>

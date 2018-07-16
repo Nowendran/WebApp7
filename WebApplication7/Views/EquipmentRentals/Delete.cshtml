@@ -1,0 +1,72 @@
+﻿@model WebApplication7.Models.EquipmentRental
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EquipmentRental</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipment.itemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipment.itemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lifeguards.lifeguard_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lifeguards.lifeguard_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Warehouse.WarehouseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Warehouse.WarehouseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfLoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfLoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Return)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Return)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

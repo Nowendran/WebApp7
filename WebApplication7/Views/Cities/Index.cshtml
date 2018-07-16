@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication7.Models.City>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Cities", FormMethod.Get))
+{
+    <p>
+        <hr />
+        City Name: @Html.TextBox("SearchName")
+        <br /><br />
+        <b>Filter by:</b>
+        <br />
+        Province: @Html.DropDownList("Province", "All")
+        <br /> <br />
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.city_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.province)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.city_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.province)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.city_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.city_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.city_id })
+            </td>
+        </tr>
+    }
+</table>
+
+</table>

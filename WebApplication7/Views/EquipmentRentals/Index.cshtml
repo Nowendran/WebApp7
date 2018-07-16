@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication7.Models.EquipmentRental>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipment.itemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lifeguards.lifeguard_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Warehouse.WarehouseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfLoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Return)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Equipment.itemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lifeguards.lifeguard_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Warehouse.WarehouseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfLoan)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Return)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.EquipmentRentalID }) |
+            @Html.ActionLink("Return", "Return", new { id = item.EquipmentRentalID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EquipmentRentalID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EquipmentRentalID })
+        </td>
+    </tr>
+}
+
+</table>

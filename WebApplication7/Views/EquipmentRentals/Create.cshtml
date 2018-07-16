@@ -1,0 +1,112 @@
+﻿@model WebApplication7.Models.EquipmentRental
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>EquipmentRental</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WarehouseID, "WarehouseID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownList("WarehouseID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.WarehouseID, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    @*@if (ViewBag.WarehouseID != null)
+    {<div class="form-group">
+            @Html.Label("EquipmentName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Equipment.EquipmentID, new SelectList(""), "Select Item", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EquipmentID, "", new { @class = "text-danger" })
+            </div>
+        </div>}*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WarehouseID, "EquipmentID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownList("EquipmentID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EquipmentID,"", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.lifeguard_id, "lifeguard_id", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("lifeguard_id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.lifeguard_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReturnDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.DateOfLoan, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.DateOfLoan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateOfLoan, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        @* @Html.LabelFor(model => model.Return, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            <div class="checkbox">
+                @*@Html.EditorFor(model => model.Return)
+                    @Html.ValidationMessageFor(model => model.Return, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    $(document).ready(function () {
+        $("#WarehouseID").change(function () {
+            $.get("/EquipmentRentals/SMD", { WarehouseID : $("#WarehouseID").val() }, function (data) {
+                $("#EquipmentID").empty();
+                $.each(data, function (index, row) {
+                    $("#EquipmentID").append("<option value='"+row.EquipmentID+"'>"+row.itemName+"</option>")
+                });
+            });
+        });
+    });
+
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

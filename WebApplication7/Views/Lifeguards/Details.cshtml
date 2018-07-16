@@ -1,0 +1,47 @@
+﻿@model WebApplication7.Models.Lifeguards
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div>
+    <h4>Lifeguards</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.city.city_name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.city.city_name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.lifeguard_name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.lifeguard_name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.l_status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.l_status)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.lifeguard_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
