@@ -40,19 +40,19 @@ namespace WebApplication7.Controllers
         // GET: EquipmentRentals/Create
         public ActionResult Create()
         {
-            ViewBag.EquipmentID = new SelectList(db.Equipments.Where(x=>x.Status== ("Available")), "EquipmentID", "itemName");
+           // ViewBag.EquipmentID = new SelectList(db.Equipments.Where(x=>x.Status== ("Available")), "EquipmentID", "itemName");
             ViewBag.lifeguard_id = new SelectList(db.Lifeguards, "lifeguard_id", "lifeguard_name");
             ViewBag.WarehouseID = new SelectList(db.Warehouses, "WarehouseID", "WarehouseName");
             return View();
         }
 
-
-        //public ActionResult SMD(int WarehouseID)
-        //{
-        //    db.Configuration.ProxyCreationEnabled = true;
-        //    List<Equipment> equipmentList = db.Equipments.Where(x => x.WarehouseID == WarehouseID && x.Status == ("Available")).ToList();
-        //    return Json(equipmentList, JsonRequestBehavior.AllowGet);
-        //}
+        //Links javascript in create view 
+        public ActionResult SMD(int WarehouseID)
+        {
+            db.Configuration.ProxyCreationEnabled = true;
+            List<Equipment> equipmentList = db.Equipments.Where(x => x.WarehouseID == WarehouseID && x.Status == ("Available")).ToList();
+            return Json(equipmentList, JsonRequestBehavior.AllowGet);
+        }
         // POST: EquipmentRentals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -73,6 +73,8 @@ namespace WebApplication7.Controllers
 
 
                     db.Entry(a).State = EntityState.Modified;
+
+                
 
                     equipmentRental.DateOfLoan = DateTime.Now;
                     db.EquipmentRentals.Add(equipmentRental);
@@ -180,16 +182,18 @@ namespace WebApplication7.Controllers
                 if (DateTime.Now.Date > equipmentRental.ReturnDate)
                 {
                     a.Status = "OverDue";
+                  
                 }
 
                 else
                 {
                     a.Status = "Available";
+                  
                 }
                 }
 
-
-                db.Entry(a).State = EntityState.Modified;
+           
+            db.Entry(a).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
 

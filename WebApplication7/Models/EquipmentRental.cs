@@ -35,7 +35,7 @@ namespace WebApplication7.Models
         [DataType(DataType.Date)]
         public System.DateTime ReturnDate { get; set; }
 
-        [Required]
+       
         [Display(Name = "Date of loan")]
         [DataType(DataType.Date)]
         public DateTime DateOfLoan { get; set; }
